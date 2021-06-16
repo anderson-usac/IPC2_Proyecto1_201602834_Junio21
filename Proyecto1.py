@@ -9,38 +9,7 @@ class Aplicacion(Tk.Frame):
         super().__init__(master)
         self.master=master
         self.pack()
-        
         self.inicializar()
-
-    def Tablero(self):
-        self.frame1.destroy()
-        filas=int(self.fila.get())
-        columnas=int(self.col.get())
-
-        self.filas = filas
-        self.columnas = columnas
-        self.dim_casilla = 35
-        self.color_casillas = "white"
-        self.dim_borde=0
-        self.el_tablero = Tk.Canvas(
-            width=self.filas * self.dim_casilla,
-            height=self.columnas * self.dim_casilla
-            )
-
-        self.el_tablero.place(relx=0.020,rely=0.020)
-        self.el_tablero.bind("<Button-1>")
-        for r in range(self.filas):
-            for c in range(self.columnas):
-                id_casilla = str(r + 1).zfill(2) +  str(c + 1).zfill(2)
-                x1, y1 = c * self.dim_casilla, r * self.dim_casilla
-                x2, y2 = x1 + self.dim_casilla, y1 + self.dim_casilla 
-                self.el_tablero.create_rectangle(
-                    x1, y1, x2, y2,
-                    fill=self.color_casillas,
-                    tags=id_casilla
-                    
-                    )   
-               # print(id_casilla)
 
     def InicioJuego(self):
         self.v=Tk.IntVar()
@@ -78,7 +47,7 @@ class Aplicacion(Tk.Frame):
         self.fila=Tk.StringVar()
         self.textfil=Tk.Entry(self.frame1,textvariable=self.fila)
         self.textfil.place(relx=0.15,rely=0.51,width=50)
-        self.botoncrear=Tk.Button(self.frame1,text='Crear Tablero',font='Arial 12',command=self.Tablero)
+        self.botoncrear=Tk.Button(self.frame1,text='Crear Tablero',font='Arial 12')
         self.botoncrear.place(relx=0.3,rely=0.45)
 
    
