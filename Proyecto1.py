@@ -1,9 +1,13 @@
 import tkinter as Tk
 import re
 from tkinter.constants import LEFT, NO, OFF
-import ListaPiezas
-import MatrizTablero 
-
+from MatrizTablero import *
+from random import *
+import xml.dom.minidom
+import sys
+import os
+import webbrowser
+#INTERFAZ-----------------------
 
 class Aplicacion(Tk.Frame):
 
@@ -13,20 +17,99 @@ class Aplicacion(Tk.Frame):
         self.pack()
         self.inicializar()
 
-    def colocarPiezas(self):
-        self.cx1=self.x1.get()  #Coordenadas en x
-        self.cy1=self.y1.get()  #coordenada en y
-        self.coordenadaJ1=self.cx1+self.cy1
-        for i in range(int(self.id_casilla)):
-            if i==int(self.coordenadaJ1):
-                self.el_tablero['fill']='red'
-                print(i)
-        
-        
-                
+   
 
-        
-        MatrizTablero.Matriz.insertar()
+    
+
+    def colocarPiezasJ1(self):
+        self.cx1=int(self.x1.get())  #Coordenadas en x
+        self.cy1=int(self.y1.get())  #coordenada en y
+        self.pieza2=randint(7,12)
+        if self.pieza==7:
+            self.canvas.create_image(100,100,image=self.pieza1)
+            self.matrizbtn[self.cy1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+2][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+3][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+4][self.cx1+1].config(bg=self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+2,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+3,self.cx1+1,self.colorJ1)
+        elif self.pieza==8:
+            self.canvas.create_image(100,100,image=self.pieza2)
+            self.matrizbtn[self.cy1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+2][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+3][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+4][self.cx1-1].config(bg=self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+2,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+3,self.cx1-1,self.colorJ1)
+        elif self.pieza==9:
+            self.canvas.create_image(100,100,image=self.pieza3)
+            self.matrizbtn[self.cy1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+2].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+3].config(bg=self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1+1,self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1+2,self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1+3,self.colorJ1)
+        elif self.pieza==10:
+            self.canvas.create_image(100,100,image=self.pieza4)
+            self.matrizbtn[self.cy1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+1][self.cx1+1].config(bg=self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1+1,self.colorJ1)
+            #Matriz.insertar(self.cy1+1,self.cx1+1,self.colorJ1)
+        elif self.pieza==11:
+            self.canvas.create_image(100,100,image=self.pieza5)
+            self.matrizbtn[self.cy1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1-1][self.cx1+1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1-1][self.cx1+2].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+3].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1][self.cx1+2].config(bg=self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1+1,self.cx1,self.colorJ1)
+            #Matriz.insertar(self.cy1,self.cx1+1,self.colorJ1)
+            #Matriz.insertar(self.cy1+1,self.cx1+1,self.colorJ1)
+        elif self.pieza==12:
+            self.canvas.create_image(100,100,image=self.pieza6)
+            self.matrizbtn[self.cy1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+1][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+2][self.cx1].config(bg=self.colorJ1)
+            self.matrizbtn[self.cy1+3][self.cx1].config(bg=self.colorJ1)
+
+
+
+
+    def colocarPiezasJ2(self):
+        self.cx2=int(self.x2.get())  #Coordenadas en x
+        self.cy2=int(self.y2.get())  #coordenada en y
+        self.matrizbtn[self.cx2][self.cy2].config(bg=self.colorJ2)
+        if self.pieza==1:
+            self.canvas.create_image(100,100,image=self.pieza1)
+        elif self.pieza==2:
+            self.canvas.create_image(100,100,image=self.pieza2)
+        elif self.pieza==3:
+            self.canvas.create_image(100,100,image=self.pieza3)
+        elif self.pieza==4:
+            self.canvas.create_image(100,100,image=self.pieza4)
+        elif self.pieza==5:
+            self.canvas.create_image(100,100,image=self.pieza5)
+        elif self.pieza==6:
+            self.canvas.create_image(100,100,image=self.pieza6)             
+                   
+
+
+
+
+ 
 
     def Tablero(self):
         self.frame1.destroy()
@@ -58,36 +141,49 @@ class Aplicacion(Tk.Frame):
         self.y2=Tk.StringVar()
         self.textJ2y=Tk.Entry(self.frame2,textvariable=self.y2)
         self.textJ2y.place(relx=0.35,rely=0.83,width=50)
-        self.BtnJ1=Tk.Button(self.frame2,text='Jugador 1',command=self.colocarPiezas)
+        self.BtnJ1=Tk.Button(self.frame2,text='Jugador 1',command=self.colocarPiezasJ1)
         self.BtnJ1.place(relx=0.02,rely=0.9)
+        self.BtnJ2=Tk.Button(self.frame2,text='Jugador 2',command=self.colocarPiezasJ2)
+        self.BtnJ2.place(relx=0.3,rely=0.9)
         #Tablero----------
         self.filas = self.filas
         self.columnas = self.columnas
-        self.dim_casilla = 35
-        self.color_casillas = "white"
-        self.dim_borde=0
-        self.el_tablero = Tk.Canvas(self.frame2,
-            width=self.filas * self.dim_casilla,
-            height=self.columnas * self.dim_casilla
-            )
-
-        self.el_tablero.place(relx=0.030,rely=0.030)
-        self.el_tablero.bind("<Button-1>")
-        for r in range(self.filas):
-            for c in range(self.columnas):
-                self.id_casilla = str(r + 1).zfill(2) +  str(c + 1).zfill(2)
-                x1, y1 = c * self.dim_casilla, r * self.dim_casilla
-                x2, y2 = x1 + self.dim_casilla, y1 + self.dim_casilla 
-                self.el_tablero.create_rectangle(
-                    x1, y1, x2, y2,
-                    fill=self.color_casillas,
-                    tags=self.id_casilla
-                    
-                    )   
-                #print(self.id_casilla)
+        self.matrizbtn=[]
+        self.tabcont=Tk.LabelFrame(self.frame2,text='TABLERO',width=450,height=450)
+        self.tabcont.place(relx=0.01,rely=0.01)
+        for i in range(int(self.filas)):
+            self.matrizbtn.append([])
+            for j in range(int(self.columnas)):
+                self.matrizbtn[i].append(Tk.Button(self.tabcont,relief='solid',width=60))
+                self.matrizbtn[i][j].place(relx=0.010+0.090*j,rely=0.010+0.090*i,relwidth=0.09,relheigh=0.09)
+        #imagen-----
+        self.pieza=randint(1,6)
+        self.canvas=Tk.Canvas(self.frame2,width=200,height=200,bg='skyblue')
+        self.canvas.place(relx=0.6,rely=0.01)
+        self.pieza1=Tk.PhotoImage(file='pieza1.png')
+        self.pieza2=Tk.PhotoImage(file='pieza2.png')
+        self.pieza3=Tk.PhotoImage(file='pieza3.png')
+        self.pieza4=Tk.PhotoImage(file='pieza4.png')
+        self.pieza5=Tk.PhotoImage(file='pieza5.png')
+        self.pieza6=Tk.PhotoImage(file='pieza6.png')
+        if self.pieza==1:
+            self.canvas.create_image(100,100,image=self.pieza1)
+        elif self.pieza==2:
+            self.canvas.create_image(100,100,image=self.pieza2)
+        elif self.pieza==3:
+            self.canvas.create_image(100,100,image=self.pieza3)
+        elif self.pieza==4:
+            self.canvas.create_image(100,100,image=self.pieza4)
+        elif self.pieza==5:
+            self.canvas.create_image(100,100,image=self.pieza5)
+        elif self.pieza==6:
+            self.canvas.create_image(100,100,image=self.pieza6)
+        
+        
+                
         self.J1L.config(fg=self.colorJ1)
         self.J2L.config(fg=self.colorJ2)
-
+        
     def asignarcolorJ1(self):
         self.color=self.v.get()
         if self.color==1:
@@ -153,6 +249,8 @@ class Aplicacion(Tk.Frame):
         self.botoncrear.place(relx=0.3,rely=0.45)
 
 
+
+
     
     def inicializar(self):
         menubar=Tk.Menu(self.master)
@@ -163,7 +261,7 @@ class Aplicacion(Tk.Frame):
         m_barra1.add_command(label='Guardar Partida')
         m_barra1.add_command(label='Ayuda')
         menubar.add_cascade(label='Inicio de juego',command=self.InicioJuego)
-        menubar.add_cascade(label='Reportes')
+        menubar.add_cascade(label='Reportes',command=Matriz.grafica)
         self.master.configure(menu=menubar)
 
 def main():

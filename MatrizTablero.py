@@ -103,6 +103,43 @@ class Matriz:
                     actual.abajo = nuevo            
                     nuevo.arriba = actual
 
+    def grafica(self):
+        CodigoGraphViz = 'digraph D {\n node [shape=box];\n'
+        CodigoGraphViz= CodigoGraphViz+'\n Rz[ label = "Raiz, width = 1.5, group=1]'
+        #Columnas
+        enccol=self.encabezadoc.primero
+        x=0
+        while enccol !=None:
+            actual=enccol.acceso
+             #Crear Nuevos Nodos
+            CodigoGraphViz = CodigoGraphViz + '\n x' + str(x) + '[label=\"X' + str(actual.columna) +',width = 1.5,group='+str(x)+'\"];\n'
+            xa = x - 1
+             #CrearConexiones
+            CodigoGraphViz = CodigoGraphViz +'x'+str(xa) + ' -> ' + 'x'+str(x) + '\n' + 'x'+str(x) + ' -> ' + 'x'+str(xa) + '\n'
+            x = x + 1
+            CodigoGraphViz=CodigoGraphViz+'\n{rank=same; Rz;'+'x'+str(x)+'}\n'
+            enccol=self.encabezadoc.siguiente        
+        encfila=self.encabezadof.primero
+        y=0
+        while encfila!= None:
+            actual=encfila.acceso
+            CodigoGraphViz=CodigoGraphViz+'\n y'+str(y)+'[label=\"X' + str(actual.fila) +',width = 1.5,group='+str(y)+'\"];\n'
+            ya=y-1
+            CodigoGraphViz=CodigoGraphViz+'x'+str(ya) + ' -> ' + 'x'+str(y) + '\n' + 'x'+str(y) + ' -> ' + 'x'+str(ya) + '\n'
+            encfila=self.encabezadof.siguiente
+        CodigoGraphViz=CodigoGraphViz+'\n Rz->x0'+'\n Rz->y0'
+
+        # Generar El Archivo de GraphViz:
+        with open("Dispersa.txt", 'w') as ArchivoGraphViz:
+            #TerminarElStringDelCodigo
+            CodigoGraphViz = CodigoGraphViz + "\n}"
+            ArchivoGraphViz.write(CodigoGraphViz)
+            ArchivoGraphViz.close()
+        hola="Dispersa.txt"
+        #hol="Dispersa.jpg"
+        #os.system("dot -Tjpg " +hola+  " -o "+hol)
+        #os.system(hol)
+        #webbrowser.open(hol)
     
     
    
