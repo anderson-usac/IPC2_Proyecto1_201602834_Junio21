@@ -105,7 +105,7 @@ class Matriz:
 
     def grafica(self):
         CodigoGraphViz = 'digraph D {\n node [shape=box];\n'
-        CodigoGraphViz= CodigoGraphViz+'\n Rz[ label = "Raiz, width = 1.5, group=1]'
+        CodigoGraphViz= CodigoGraphViz+'\n Rz[ label = "Raiz", width = 1.5, group=1]'
         #Columnas
         enccol=self.encabezadoc.primero
         x=0
@@ -118,7 +118,7 @@ class Matriz:
             CodigoGraphViz = CodigoGraphViz +'x'+str(xa) + ' -> ' + 'x'+str(x) + '\n' + 'x'+str(x) + ' -> ' + 'x'+str(xa) + '\n'
             x = x + 1
             CodigoGraphViz=CodigoGraphViz+'\n{rank=same; Rz;'+'x'+str(x)+'}\n'
-            enccol=self.encabezadoc.siguiente        
+            #enccol=self.encabezadoc.siguiente        
         encfila=self.encabezadof.primero
         y=0
         while encfila!= None:
@@ -126,7 +126,7 @@ class Matriz:
             CodigoGraphViz=CodigoGraphViz+'\n y'+str(y)+'[label=\"X' + str(actual.fila) +',width = 1.5,group='+str(y)+'\"];\n'
             ya=y-1
             CodigoGraphViz=CodigoGraphViz+'x'+str(ya) + ' -> ' + 'x'+str(y) + '\n' + 'x'+str(y) + ' -> ' + 'x'+str(ya) + '\n'
-            encfila=self.encabezadof.siguiente
+            #encfila=self.encabezadof.siguiente
         CodigoGraphViz=CodigoGraphViz+'\n Rz->x0'+'\n Rz->y0'
 
         # Generar El Archivo de GraphViz:
